@@ -1,5 +1,6 @@
 "use client"
 
+import CurrencyInput from "@/components/CurrencyInput";
 import DatePicker from "@/components/DatePicker";
 import Input from "@/components/Input";
 
@@ -15,7 +16,7 @@ const TripSearch = () => {
 
         <div className="flex gap-4">
           <DatePicker placeholderText="Data de ida" onChange={() => {}} className="w-full"/>
-          <Input placeholder="Orçamento" />
+          <CurrencyInput placeholder="Orçamento" />
         </div>
       </div>
     </div>
