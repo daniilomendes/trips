@@ -7,7 +7,7 @@ import Input from "@/components/Input";
 
 const TripSearch = () => {
   return (
-    <div className="container mx-auto p-5">
+    <div className="container mx-auto p-5 bg-search-background bg-cover bg-no-repeat">
       <h1 className=" text-center text-2xl font-semibold text-primaryDarker">
         Encontre sua próxima <span className="text-primary">viagem!</span>
       </h1>
