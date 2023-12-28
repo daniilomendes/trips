@@ -54,6 +54,7 @@ const TripReservation = ({ tripStartDate, tripEndDate, maxGuests }: TripReservat
               placeholderText="Data de Início"
               className="w-full"
               minDate={tripStartDate}
+              maxDate={tripEndDate}
             />
           )}
 
