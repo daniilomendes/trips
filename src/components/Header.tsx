@@ -2,6 +2,7 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 
@@ -20,9 +21,11 @@ const Header = () => {
   const handleMenuClick = () => setMenuIsOpen(!menuIsOpen);
   return (
     <div className="container mx-auto p-5 py-0 h-[93px] flex justify-between items-center">
+      <Link href="/">
       <div className="relative h-[32px] w-[182px] items-center">
         <Image src="/logo.png" alt="Logo" fill />
       </div>
+      </Link>
 
       {status === "unauthenticated" && (
         <button
