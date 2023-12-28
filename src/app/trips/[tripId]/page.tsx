@@ -1,5 +1,5 @@
 import { prismaCliente } from "@/lib/prisma";
-import Image from "next/image";
+import TripHeader from "./components/TripHeader";
 
 const getTripDetails = async (tripId: string) => {
   const trip = await prismaCliente.trip.findUnique({
@@ -18,14 +18,9 @@ const TripDetails = async ({ params }: { params: { tripId: string } }) => {
 
   return (
     <div className="container">
-      <div className="relative h-[300px] w-full">
-        <Image
-          src={trip?.coverImage}
-          fill
-          style={{ objectFit: "cover" }}
-          alt={trip.name}
-        />
-      </div>
+      <TripHeader trip={trip} />
+
+    {/* Reserva */}
     </div>
   );
 };
