@@ -6,10 +6,10 @@ import Input from "@/components/Input";
 import { Trip } from "@prisma/client";
 
 interface TripReservationProps {
-    trip: Trip
+  trip: Trip;
 }
 
-const TripReservation = ({trip}: TripReservationProps) => {
+const TripReservation = ({ trip }: TripReservationProps) => {
   return (
     <div className="flex flex-col px-5">
       <div className="flex gap-4">
@@ -25,14 +25,19 @@ const TripReservation = ({trip}: TripReservationProps) => {
         />
       </div>
 
-      <Input placeholder={`Número de hóspedes(max: ${trip.maxGuests})`} className="mt-4" />
+      <Input
+        placeholder={`Número de hóspedes(max: ${trip.maxGuests})`}
+        className="mt-4"
+      />
 
-      <div className="flex justify-between mt-3">
-        <p className="font-medium text-sm text-primaryDarker">Total: </p>
-        <p className="font-medium text-sm text-primaryDarker">R$ 2.500</p>
+      <div className="mt-3 flex justify-between">
+        <p className="text-sm font-medium text-primaryDarker">Total: </p>
+        <p className="text-sm font-medium text-primaryDarker">R$ 2.500</p>
       </div>
 
-      <Button className="mt-3">Reservar agora</Button>
+      <div className="border-b border-grayLighter pb-10 w-full">
+        <Button className="mt-3 w-full">Reservar agora</Button>
+      </div>
     </div>
   );
 };

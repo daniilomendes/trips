@@ -20,9 +20,7 @@ const TripDetails = async ({ params }: { params: { tripId: string } }) => {
   return (
     <div className="container">
       <TripHeader trip={trip} />
-
-    {/* Reserva */}
-    <TripReservation trip={trip}/>
+      <TripReservation trip={trip} />
     </div>
   );
 };
