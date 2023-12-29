@@ -19,20 +19,19 @@ const MyTrips = () => {
 
   const router = useRouter();
 
+  const fetchReservations = async () => {
+    const response = await fetch(
+      `http://localhost:3000/api/user/${(data?.user as any)?.id}/reservations`,
+    );
+    const json = await response.json();
+
+    setReservations(json);
+  };
+
   useEffect(() => {
-    if (status === "unauthenticated" || !data?.user) {
+    if (status === "unauthenticated") {
       return router.push("/");
     }
-
-    const fetchReservations = async () => {
-      const response = await fetch(
-        `http://localhost:3000/api/user/${(data?.user as any)
-          ?.id}/reservations`,
-      );
-      const json = await response.json();
-
-      setReservations(json);
-    };
 
     fetchReservations();
   }, [status]);
@@ -45,17 +44,21 @@ const MyTrips = () => {
 
       {reservations.length > 0 ? (
         reservations?.map((reservation) => (
-          <UserReservationItem key={reservation.id} reservation={reservation} />
+          <UserReservationItem
+            key={reservation.id}
+            reservation={reservation}
+            fetchReservations={fetchReservations}
+          />
         ))
       ) : (
         <div className="flex flex-col">
-            <p className="mt-2 font-medium text-primaryDarker">
-          Você ainda não tem nem uma reserva!
-        </p>
+          <p className="mt-2 font-medium text-primaryDarker">
+            Você ainda não tem nem uma reserva!
+          </p>
 
-        <Link href="/">
-        <Button className="w-full mt-2">Fazer reserva</Button>
-        </Link>
+          <Link href="/">
+            <Button className="mt-2 w-full">Fazer reserva</Button>
+          </Link>
         </div>
       )}
     </div>
