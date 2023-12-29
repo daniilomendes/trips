@@ -18,13 +18,15 @@ const Header = () => {
     signOut();
   };
 
+  const handleMyTripsClick = () => {};
+
   const handleMenuClick = () => setMenuIsOpen(!menuIsOpen);
   return (
-    <div className="container mx-auto p-5 py-0 h-[93px] flex justify-between items-center">
+    <div className="container mx-auto flex h-[93px] items-center justify-between p-5 py-0">
       <Link href="/">
-      <div className="relative h-[32px] w-[182px] items-center">
-        <Image src="/logo.png" alt="Logo" fill />
-      </div>
+        <div className="relative h-[32px] w-[182px] items-center">
+          <Image src="/logo.png" alt="Logo" fill />
+        </div>
       </Link>
 
       {status === "unauthenticated" && (
@@ -37,7 +39,7 @@ const Header = () => {
       )}
 
       {status === "authenticated" && data.user && (
-        <div className="border-grayLighter relative flex items-center gap-3 rounded-full border border-solid p-2 px-3">
+        <div className="relative flex items-center gap-3 rounded-full border border-solid border-grayLighter p-2 px-3">
           <AiOutlineMenu
             size={16}
             onClick={handleMenuClick}
@@ -54,6 +56,11 @@ const Header = () => {
 
           {menuIsOpen && (
             <div className="absolute left-0 top-14 z-50 flex h-[100px] w-full flex-col items-center justify-center rounded-lg bg-white shadow-md">
+              <Link href="/my-trips" onClick={() => setMenuIsOpen(false)}>
+                <button className="border-b border-solid border-grayLighter pb-2 text-sm font-semibold text-primary">
+                  Minhas Viagens
+                </button>
+              </Link>
               <button
                 className="pt-2 text-sm font-semibold text-primary"
                 onClick={handleLogoutClick}
