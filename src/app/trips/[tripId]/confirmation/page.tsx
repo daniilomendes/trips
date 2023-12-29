@@ -1,10 +1,12 @@
 "use client";
 
 import { Trip } from "@prisma/client";
+import { format } from "date-fns";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import ReactCountryFlag from "react-country-flag";
+import ptBR from "date-fns/locale/pt-BR";
 
 const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
   const [trip, setTrip] = useState<Trip | null>();
@@ -34,10 +36,15 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
 
   if (!trip) return null;
 
+  const startDate = new Date(searchParams.get("startDate") as string);
+  const endDate = new Date(searchParams.get("endDate") as string);
+  const guests = searchParams.get("guests")
+
   return (
     <div className="container mx-auto p-5">
       <h1 className="text-xl font-semibold text-primaryDarker">Sua viagem</h1>
 
+      {/* CARD */}
       <div className="mt-5 flex flex-col rounded-lg border border-solid border-grayLighter p-5 shadow-lg">
         <div className="flex items-center gap-3 border-b border-solid border-grayLighter pb-5">
           <div className="relative h-[106px] w-[124px]">
@@ -67,10 +74,22 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
           Informações sobre o preço
         </h3>
 
-        <div className="flex justify-between mt-1">
+        <div className="mt-1 flex justify-between">
           <p className="text-primaryDarker">Total:</p>
           <p className="font-medium">R$ {totalPrice}</p>
         </div>
+      </div>
+
+      <div className="mt-5 flex flex-col text-primaryDarker">
+        <h3 className=" font-semibold ">Data</h3>
+        <div className="mt-1 flex items-center gap-1">
+          <p>{format(startDate, "dd 'de' MMMM", { locale: ptBR })}</p>
+          {" - "}
+          <p>{format(endDate, "dd 'de' MMMM", { locale: ptBR })}</p>
+        </div>
+
+        <h3 className="font-semibold mt-5">Hóspedes</h3>
+        <p>{guests} hóspedes</p>
       </div>
     </div>
   );
