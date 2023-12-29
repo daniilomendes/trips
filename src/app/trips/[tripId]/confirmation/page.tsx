@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import ReactCountryFlag from "react-country-flag";
 import ptBR from "date-fns/locale/pt-BR";
+import Button from "@/components/Button";
 
 const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
   const [trip, setTrip] = useState<Trip | null>();
@@ -90,6 +91,8 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
 
         <h3 className="font-semibold mt-5">Hóspedes</h3>
         <p>{guests} hóspedes</p>
+
+        <Button className="mt-5">Finalizar Compra</Button>
       </div>
     </div>
   );
