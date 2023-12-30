@@ -11,6 +11,7 @@ import Button from "@/components/Button";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { loadStripe } from "@stripe/stripe-js";
 
 const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
   const [trip, setTrip] = useState<Trip | null>();
@@ -61,10 +62,8 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
           startDate: searchParams.get("startDate"),
           endDate: searchParams.get("endDate"),
           guests: Number(searchParams.get("guests")),
-
           userId: (data?.user as any)?.id!,
           totalPaid: totalPrice,
-
           // totalPrice,
           // coverImage: trip.coverImage,
           // name: trip.name,
@@ -78,6 +77,14 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
         position: "bottom-center",
       });
     }
+
+    // const { sessionId } = await res.json();
+
+    // const stripe = await loadStripe(
+    //   process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string,
+    // );
+
+    // await stripe?.redirectToCheckout({sessionId})
 
     router.push("/");
 
