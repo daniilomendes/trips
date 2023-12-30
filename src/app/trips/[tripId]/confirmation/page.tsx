@@ -61,7 +61,7 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
           startDate: searchParams.get("startDate"),
           endDate: searchParams.get("endDate"),
           guests: Number(searchParams.get("guests")),
-          
+
           userId: (data?.user as any)?.id!,
           totalPaid: totalPrice,
 
@@ -74,10 +74,12 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
     });
 
     if (!res.ok) {
-      return toast.error("Ocorreu um erro ao realizar a reserva!", { position: "bottom-center" });
+      return toast.error("Ocorreu um erro ao realizar a reserva!", {
+        position: "bottom-center",
+      });
     }
 
-    router.push("/")
+    router.push("/");
 
     toast.success("Reserva realizada com sucesso!", {
       position: "bottom-center",
@@ -139,7 +141,9 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
         <h3 className="mt-5 font-semibold">Hóspedes</h3>
         <p>{guests} hóspedes</p>
 
-        <Button className="mt-5" onClick={handleBuyClick}>Finalizar Compra</Button>
+        <Button className="mt-5" onClick={handleBuyClick}>
+          Finalizar Compra
+        </Button>
       </div>
     </div>
   );
