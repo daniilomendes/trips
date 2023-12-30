@@ -1,7 +1,7 @@
 import { prismaCliente } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-export async function DELETE(_request: Request, { params: { reservationId } }: { params: { reservationId: string } }) {
+export async function DELETE(_request: Request, { params: { reservationId } }: { params: { reservationId: string } }){
   if (!reservationId) {
     return {
       status: 400,
@@ -17,9 +17,5 @@ export async function DELETE(_request: Request, { params: { reservationId } }: {
     },
   });
 
-  if (!reservation) {
-    return null;
-  }
-
-  return new NextResponse(JSON.stringify(reservation), { status: 200 });
+  return NextResponse.json(JSON.stringify(reservation), { status: 200 });
 }
