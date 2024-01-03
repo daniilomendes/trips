@@ -18,7 +18,7 @@ export async function POST(request: Request) {
         error: {
           code: "TRIP_NOT_FOUND",
         },
-      }),
+      })
     );
   }
 
@@ -37,6 +37,6 @@ export async function POST(request: Request) {
     JSON.stringify({
       success: true,
     }),
-    { status: 201 },
+    { status: 201 }
   );
 }
